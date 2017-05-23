@@ -24,6 +24,7 @@ class App extends Component {
     this.setState({searchVal: e.target.value});
   }
 
+
   handleSearch(title) {
       axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + this.state.key + '&query=' + title)
       .then(res => {
