@@ -1,32 +1,44 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class Content extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            movies: []
-        };
+
     }
 
-    componentDidMount() {
-        axios.get('https://api.themoviedb.org/3/search/movie?api_key=47e27219ee335b95988455c455c809f8&query=legend')
-        .then(res => {
-        const movies = res.data.data.children.map(obj => obj.data);
-        this.setState({ movies });
-      });
-    }
 
     render() {
         return (
             <div>
-                <ul>
-                {this.state.movies.map(movie =>
-                    <li key={movie.id}>{movie.title}</li>
-                )}
-                </ul>
+                <h1>{this.props.searchVal}</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Popularity</th>
+                            <th>Vote average</th>
+                            <th>Vote count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.props.movies.map(movie => 
+                        <tr key={movie.id}>
+                            <td><img src={"http://image.tmdb.org/t/p/w185/" + movie.poster_path}/> </td>
+                            <td>{movie.title}</td>
+                            <td>{movie.overview}</td>
+                            <td>{movie.popularity}</td>
+                            <td>{movie.vote_average}</td>
+                            <td>{movie.vote_count}</td>
+                        </tr>
+                        )}
+                    </tbody>
+                </table>
             </div>
         );
     }
 }
+
+export default Content;
