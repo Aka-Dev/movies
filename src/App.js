@@ -11,7 +11,8 @@ class App extends Component {
 
     this.state = {
       searchVal: 'Search..',
-      movies: []
+      movies: [],
+      key: '47e27219ee335b95988455c455c809f8'
     }
 
     this.updateState = this.updateState.bind(this);
@@ -24,7 +25,7 @@ class App extends Component {
   }
 
   handleSearch(title) {
-      axios.get('https://api.themoviedb.org/3/search/movie?api_key=47e27219ee335b95988455c455c809f8&query=' + title)
+      axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + this.state.key + '&query=' + title)
       .then(res => {
           const movies = res.data.results.map(obj => obj);
           this.setState({movies});

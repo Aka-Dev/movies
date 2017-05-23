@@ -12,7 +12,7 @@ class Content extends Component {
         return (
             <div>
                 <h1>{this.props.searchVal}</h1>
-                <table>
+                <table className="table table-bordered table-responsive">
                     <thead>
                         <tr>
                             <th>Image</th>
@@ -26,6 +26,7 @@ class Content extends Component {
                     <tbody>
                         {this.props.movies.map(movie => 
                         <tr key={movie.id}>
+                        {console.log(movie.id)}
                             <td><img src={"http://image.tmdb.org/t/p/w185/" + movie.poster_path}/> </td>
                             <td>{movie.title}</td>
                             <td>{movie.overview}</td>
