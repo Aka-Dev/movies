@@ -6,7 +6,9 @@
     "axios": "^0.16.1",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-router": "^2.6.1",
+    "react-youtube": "^7.4.0"
   },
   "devDependencies": {
     "react-js-pagination": "^2.1.0",

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Search from './Search';
 import Content from './Content';
-import logo from './logo.svg';
-import './App.css';
+
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +11,7 @@ class App extends Component {
     this.state = {
       searchVal: 'Search..',
       movies: [],
+      url: 'https://api.themoviedb.org/3/',
       key: '47e27219ee335b95988455c455c809f8'
     }
 
