@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import emptyImg from '../static/img/empty.png'
 
 class Content extends Component {
     constructor(props) {
@@ -7,7 +8,7 @@ class Content extends Component {
 
         this.state = {
             currentPage: 1,
-            moviesPerPage: 3
+            moviesPerPage: 5
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -25,22 +26,40 @@ class Content extends Component {
         const indexOfLastMovie = currentPage * moviesPerPage;
         const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
         const currentMovies = this.props.movies.slice(indexOfFirstMovie, indexOfLastMovie);
-
         const renderMovies = currentMovies.map((movie) => {
+            let row ;
+            if(Number(this.props.genreId) === 0) {
+                row = (
+                    <tr key={movie.id}>
+                        <td>
+                            <Link to={`/movies/${movie.id}`}>
+                            <img className="img-rounded" src={movie.poster_path ? "http://image.tmdb.org/t/p/w185/" + movie.poster_path : emptyImg} alt={movie.title} title={movie.title}/>
+                            </Link>
+                        </td>
+                        <td>{movie.title}</td>
+                        <td>{movie.release_date}</td>
+                    </tr>   
+                );
+            } else {
+                if(movie.genre_ids.indexOf(Number(this.props.genreId)) !== -1) {
+                    row = (
+                    <tr key={movie.id}>
+                            <td>
+                                <Link to={`/movies/${movie.id}`}>
+                                <img className="img-rounded" src={movie.poster_path ? "http://image.tmdb.org/t/p/w185/" + movie.poster_path : emptyImg} alt={movie.title} title={movie.title}/>
+                                </Link>
+                            </td>
+                            <td>{movie.title}</td>
+                            <td>{movie.release_date}</td>
+                        </tr> 
+                    );
+                }
+            }
+
             return (
-                <tr key={movie.id}>
-                    <td>
-                        <Link to={`/movies/${movie.id}`}>
-                        <img src={"http://image.tmdb.org/t/p/w185/" + movie.poster_path} alt={movie.title}/>
-                        </Link>
-                    </td>
-                    <td>{movie.title}</td>
-                    <td>{movie.overview}</td>
-                    <td>{movie.popularity}</td>
-                    <td>{movie.vote_average}</td>
-                    <td>{movie.vote_count}</td>
-                </tr>            
+                row
             );
+
         });
 
         const pageNumbers = [];
@@ -68,10 +87,7 @@ class Content extends Component {
                         <tr>
                             <th>Image</th>
                             <th>Title</th>
-                            <th>Description</th>
-                            <th>Popularity</th>
-                            <th>Vote average</th>
-                            <th>Vote count</th>
+                            <th>Release date</th>
                         </tr>
                     </thead>
                     <tbody>

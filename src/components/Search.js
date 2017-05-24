@@ -9,7 +9,9 @@ class Search extends Component {
     }
     handleClick(e) {
         e.preventDefault();
-        var criteria = ReactDOM.findDOMNode(this.refs.search).value.trim();
+        var criteria = [];
+        criteria.push(ReactDOM.findDOMNode(this.refs.search).value.trim());
+        criteria.push(ReactDOM.findDOMNode(this.refs.genre).value.trim());
         this.props.onSearch(criteria);
     }
     render() {
@@ -20,6 +22,15 @@ class Search extends Component {
                         <label htmlFor="search">Search</label>
                         <input ref="search" type="text" placeholder="Search" className="form-control" id="search" 
                             onChange={this.props.updateStateProp}/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="genre">Genre</label>
+                        <select ref="genre">
+                            <option value="0" selected>All</option>
+                            {this.props.genres.map(genre => 
+                                <option key={genre.id} value={genre.id}>{genre.name}</option>
+                            )}
+                        </select>
                     </div>
                     <button type="submit" className="btn btn-default" onClick={this.handleClick}>Submit</button>
                 </form>
