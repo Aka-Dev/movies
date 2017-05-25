@@ -17,7 +17,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleClick}>
                     <div className="form-group">
                         <label htmlFor="search">Search</label>
                         <input ref="search" type="text" placeholder="Search" className="form-control" id="search" 
@@ -25,14 +25,14 @@ class Search extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="genre">Genre</label>
-                        <select ref="genre">
-                            <option value="0" selected>All</option>
+                        <select ref="genre" defaultValue="0">
+                            <option value="0">All</option>
                             {this.props.genres.map(genre => 
                                 <option key={genre.id} value={genre.id}>{genre.name}</option>
                             )}
                         </select>
                     </div>
-                    <button type="submit" className="btn btn-default" onClick={this.handleClick}>Submit</button>
+                    <button type="submit" className="btn btn-default">Submit</button>
                 </form>
             </div>
         );
