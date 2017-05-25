@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+            
       axios.get(this.props.route.url + 'discover/movie?api_key=' + this.props.route.keyApi + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1')
       .then(res => {
           const movies = res.data.results.map(obj => obj);
