@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import TableRow from './TableRow';
 
-export default class Popular extends Component {
+export default class Upcoming extends Component {
 
     render() {
         return (
-            <TableRow listMovies={this.props.popular} genreIdChild = "0" /> 
+            <TableRow listMovies={this.props.upcoming} genreIdChild = "0" /> 
         );
     }
 } 

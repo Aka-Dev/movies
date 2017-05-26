@@ -7,6 +7,7 @@ class Search extends Component {
 
         this.handleClick = this.handleClick.bind(this);
     }
+
     handleClick(e) {
         e.preventDefault();
         var criteria = [];
@@ -14,6 +15,7 @@ class Search extends Component {
         criteria.push(ReactDOM.findDOMNode(this.refs.genre).value.trim());
         this.props.onSearch(criteria);
     }
+    
     render() {
         return (
             <div>
