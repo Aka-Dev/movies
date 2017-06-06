@@ -1,9 +1,10 @@
 {
-  "name": "my-app",
+  "name": "movies",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.16.1",
+    "babel-preset-es2015": "^6.24.1",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -16,7 +17,7 @@
   },
   "devDependencies": {
     "react-js-pagination": "^2.1.0",
-    "react-scripts": "1.0.0"
+    "react-scripts": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

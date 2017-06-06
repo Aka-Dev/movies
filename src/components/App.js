@@ -17,6 +17,7 @@ class App extends Component {
 
     this.updateState = this.updateState.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleSearchGenre = this.handleSearchGenre.bind(this);
   }
 
   componentDidMount() {
@@ -43,23 +44,25 @@ class App extends Component {
 
 
   handleSearch(criteria) {
-    if(criteria[0] !== '') {
-        axios.get(this.props.route.url + 'search/movie?api_key=' + this.props.route.keyApi + '&query=' + criteria[0])
+    if(criteria !== '') {
+        axios.get(this.props.route.url + 'search/movie?api_key=' + this.props.route.keyApi + '&query=' + criteria)
         .then(res => {
             const movies = res.data.results.map(obj => obj);
             this.setState({movies});
       });
     } 
+  }
+
+  handleSearchGenre(idGenre) {
     this.setState({
-      genreToFilter: criteria[1]
+      genreToFilter: idGenre
     });
-    
   }
 
   render() {
     return (
       <div className="App container">
-        <Search searchVal = {this.state.searchVal} genres= {this.state.genres} updateStateProp = {this.updateState} onSearch = {this.handleSearch}/>
+        <Search searchVal = {this.state.searchVal} genres= {this.state.genres} updateStateProp = {this.updateState} onSearch = {this.handleSearch} onSearchGenre = {this.handleSearchGenre}/>
         <Content movies = {this.state.movies} genreId = {this.state.genreToFilter}/>
       </div>
     );
